@@ -1,0 +1,33 @@
+
+
+<div>
+        <?php
+        if(!empty($concesionarias)){
+            echo "<table>
+                    <thead>
+                        <tr>
+                            <th>nombre</th>
+                            <th>lugar</th>
+                            <th>direccion</th>
+                            <th>email</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+            ";
+            foreach($concesionarias as $concesionaria) {
+                echo "
+                        <tr>
+                            <td>$concesionaria->nombre</td>
+                            <td>$concesionaria->lugar</td>
+                            <td>$concesionaria->direccion</td>
+                            <td>$concesionaria->email</td>
+                        </tr>
+                ";
+            }
+            echo " </tbody>    
+                    </table>";
+        }else{
+            echo "<p>No se encontraron concesionarias.</p>";
+        }
+        ?>
+    </div>

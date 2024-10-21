@@ -1,0 +1,33 @@
+
+
+<div>
+        <?php
+        if(!empty($vehiculos)){
+            echo "<table>
+                    <thead>
+                        <tr>
+                            <th>tipo</th>
+                            <th>marca</th>
+                            <th>modelo</th>
+                            <th>año</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+            ";
+            foreach($vehiculos as $vehiculo) {
+                echo "
+                        <tr>
+                            <td>$vehiculo->tipo</td>
+                            <td>$vehiculo->marca</td>
+                            <td>$vehiculo->modelo</td>
+                            <td>$vehiculo->año</td>
+                        </tr>
+                ";
+            }
+            echo " </tbody>    
+                    </table>";
+        }else{
+            echo "<p>No se encontraron vehículos.</p>";
+        }
+        ?>
+    </div>
