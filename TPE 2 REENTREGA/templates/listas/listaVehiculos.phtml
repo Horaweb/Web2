@@ -1,0 +1,64 @@
+<?php require 'templates/layout/header.phtml' ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$res = !empty($_SESSION['ID_USER']);
+?>
+<div>
+    <?php if(!empty($vehiculos)):?>
+        <table>
+                    <thead>
+                        <tr>
+                            <th>marca</th>
+                            <th>modelo</th>  
+                        </tr>
+                    <thead>
+                    <tbody>
+            <?php foreach($vehiculos as $vehiculo): ?>
+                <tr>
+                    <td><?=$vehiculo->marca?></td>
+                    <td><?=$vehiculo->modelo?></td>
+                    <?php if (!empty($_SESSION['ID_USER'])): ?>
+                        <td>
+                            <form action='delete/<?=$vehiculo->id ?>' method='POST' >
+                                <button type='submit'>Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action='edit/<?=$vehiculo->id ?>' method='POST' >
+                                <button type='submit'>Editar</button>
+                            </form>
+                        </td>
+                    <?php else: ?>
+                        <td>
+                            <form  style="display: none;" action='delete/<?=$vehiculo->id ?>' method='POST'>
+                                <button type='submit'>Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form  style="display: none;" action='edit/<?=$vehiculo->id ?>' method='POST'>
+                                <button type='submit'>Editar</button>
+                            </form>
+                        </td>
+                    <?php endif; ?>
+                    <td> 
+                        <form action='vermas/<?=$vehiculo->id ?>' method='POST'>
+                            <button type='submit'>Ver Mas</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+                    </tbody>    
+        </table>
+    <?php else: ?>
+            <p>No se encontraron vehículos.</p>
+    <?php endif; ?>
+
+</div>
+
+
+
+
+
+

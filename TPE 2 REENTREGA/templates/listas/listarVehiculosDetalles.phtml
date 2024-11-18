@@ -1,0 +1,39 @@
+<?php require 'templates/layout/header.phtml' ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$res = !empty($_SESSION['ID_USER']);
+?>
+
+<div>
+    <?php if(!empty($vehiculo) && !empty($concesionaria)):?>
+        <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th> 
+                        <th>Precio</th>
+                        <th>Concesionaria</th>        
+                    </tr>
+                <thead>
+                <tbody>
+                <tr>
+                    <td><?=$vehiculo->tipo?></td>
+                    <td><?=$vehiculo->marca?></td>
+                    <td><?=$vehiculo->modelo?></td>
+                    <td><?=$vehiculo->año?></td>
+                    <td><?=$vehiculo->precio?></td>
+                    <td><?=$concesionaria->nombre?></td>
+                </tr>
+                </tbody>    
+        </table>
+    <?php else: ?>
+            <p>No se encontraron vehículos.</p>
+    <?php endif; ?>        
+</div>
+
+<?php require 'templates/layout/footer.phtml' ?>

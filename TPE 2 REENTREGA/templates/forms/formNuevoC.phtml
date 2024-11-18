@@ -1,0 +1,44 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$res = !empty($_SESSION['ID_USER']);
+?>
+
+<?php if (!empty($_SESSION['ID_USER'])): ?>
+            <h3>Agregar Concesionaria</h3>
+            <form action="add" method="POST">
+            <div>
+                <div>
+                    <div>
+                        <label>Nombre</label>
+                        <input required name="nombre" type="text">
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <label>Lugar</label>
+                        <input required name="lugar" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="">Direccion</label>
+                        <input required name="direccion" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Email</label>
+                        <input required name="email" type="text">
+                    </div>
+                </div>  
+            </div>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+<?php endif; ?>
+
+<?php require 'templates/layout/footer.phtml' ?>

@@ -1,0 +1,69 @@
+<?php require 'templates/layout/header.phtml' ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$res = !empty($_SESSION['ID_USER']);
+?>
+<div>
+    <?php if(!empty($concesionarias)):?>
+        <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Lugar</th>
+                            <th>Direccion</th>
+                            <th>Email</th>   
+                        </tr>
+                    <thead>
+                    <tbody>
+            <?php foreach($concesionarias as $concesionaria): ?>
+                <tr>
+                    <td><?=$concesionaria->nombre?></td>
+                    <td><?=$concesionaria->lugar?></td>
+                    <td><?=$concesionaria->direccion?></td>
+                    <td><?=$concesionaria->email?></td>
+
+                    <?php if (!empty($_SESSION['ID_USER'])): ?>
+                        <td>
+                            <form action='delete/<?=$concesionaria->id ?>' method='POST' >
+                                <button type='submit'>Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action='editconcesionaria/<?=$concesionaria->id ?>' method='POST' >
+                                <button type='submit'>Editar</button>
+                            </form>
+                        </td>
+                    <?php else: ?>
+                        <td>
+                            <form  style="display: none;" action='delete/<?=$concesionaria->id ?>' method='POST'>
+                                <button type='submit'>Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form  style="display: none;" action='editconcesionaria/<?=$concesionaria->id ?>' method='POST'>
+                                <button type='submit'>Editar</button>
+                            </form>
+                        </td>
+                    <?php endif; ?>
+                    <td> 
+                        <form action='verunidades/<?=$concesionaria->id ?>' method='POST'>
+                            <button type='submit'>Vehiculos</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+                    </tbody>    
+        </table>
+    <?php else: ?>
+            <p>No se encontraron vehículos.</p>
+    <?php endif; ?>
+
+</div>
+
+
+
+
+
+

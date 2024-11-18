@@ -1,0 +1,43 @@
+<?php include 'templates/layout/header.phtml';?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$res = !empty($_SESSION['ID_USER']);
+?>
+<?php if (!empty($_SESSION['ID_USER'])): ?>
+        <h3>Editar Concesionaria</h3>
+        <form action="<?= BASE_URL ?>updateconcesionarias/<?= $concesionaria->id ?>" method='POST'>
+            <div>
+                <div>
+                    <div>
+                        <label>Nombre</label>
+                        <input required name="nombre" type="text">
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <label>Lugar</label>
+                        <input required name="lugar" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Direccion</label>
+                        <input required name="direccion" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Email</label>
+                        <input required name="email" type="text">
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+
+<?php endif; ?>
+
+<?php require 'templates/layout/footer.phtml' ?>

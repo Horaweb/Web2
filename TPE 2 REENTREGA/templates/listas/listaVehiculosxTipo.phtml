@@ -1,0 +1,31 @@
+<?php include 'templates/layout/header.phtml';?>
+<?php
+        echo "<h3>$tipo: </h3>";
+        if(!empty($vehiculos)){
+            echo "<table>
+                    <thead>
+                        <tr>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Año</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+            ";
+            foreach($vehiculos as $vehiculo) {
+                echo "
+                        <tr>
+                            <td>$vehiculo->marca</td>
+                            <td>$vehiculo->modelo</td>
+                            <td>$vehiculo->año</td>
+                        </tr>
+                ";
+            }
+            echo " </tbody>    
+                    </table>";
+        }else{
+            echo "<p>No se encontraron vehículos.</p>";
+        }
+    ?>
+</div>
+<?php require 'templates/layout/footer.phtml' ?>
